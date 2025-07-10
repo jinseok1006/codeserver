@@ -1,0 +1,17 @@
+services:
+ code-server:
+   build: .
+   restart: always
+   environment:
+     - PASSWORD=${PASSWORD}
+     - SUDO_PASSWORD=${PASSWORD}
+   ports:
+     - ${PORT}:8443
+   networks:
+     - custom-bridge
+
+networks:
+ custom-bridge:
+   driver: bridge
+   driver_opts:
+     com.docker.network.driver.mtu: 1450
